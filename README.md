@@ -55,6 +55,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-# live version
+## Live version
 
 The live version of the application can be accessed [here](https://final-yeasty.vercel.app/).
