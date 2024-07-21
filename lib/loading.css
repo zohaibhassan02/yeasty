@@ -1,0 +1,22 @@
+/* styles.css or your global CSS file */
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2c2f48; /* Adjust the background color as needed */
+    color: #fff; /* Adjust the text color as needed */
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    animation: fadeIn 1s ease-in-out;
+  }
+  
