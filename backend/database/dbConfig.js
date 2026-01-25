@@ -2,13 +2,15 @@ import mongoose from 'mongoose';
 
 export async function connect() {
     try {
+        console.log("HELLLLOOOOOOOOO");
         mongoose.connect(`mongodb+srv://zohaibhassan22002:${encodeURIComponent(process.env.DATABASE_PASSWORD)}@cluster0.xzn1q5f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
-
         {
             useNewUrlParser: false,
             // useUnifiedTopology: true,
 
         })
+
+        console.log("EOOOOOOOOOOOOOOOOOOOO");
 
         const connection = mongoose.connection;
 
