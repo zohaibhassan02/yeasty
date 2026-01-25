@@ -17,7 +17,7 @@ const corsHeaders: Record<string, string> = {
 };
 
 // Toggle this to false once POST works and you want to test real DB signup.
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: corsHeaders });
