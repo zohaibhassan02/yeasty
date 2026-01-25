@@ -1,14 +1,31 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
-  const hash = await bcrypt.hash("test1234", 10);
-  return NextResponse.json({ ok: true, step: "bcrypt worked", hashLen: hash.length });
-}
+/**
+ * This route does NOTHING except prove:
+ * - POST works
+ * - You are hitting the correct deployment
+ */
 
 export async function GET() {
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    method: "GET",
+    stamp: "USER_SIGNUP_ROUTE_GET_vFINAL",
+  });
+}
+
+export async function POST() {
+  return NextResponse.json({
+    ok: true,
+    method: "POST",
+    stamp: "USER_SIGNUP_ROUTE_POST_vFINAL",
+    time: new Date().toISOString(),
+  });
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204 });
 }
