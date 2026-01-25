@@ -2,12 +2,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
-import UserAuthModal from "@/backend/Model/UserAuthModal";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: NextRequest) {
-  // Just touch the model
-  const name = UserAuthModal?.modelName || "no-model";
-  return NextResponse.json({ ok: true, step: "model import worked", name });
+  const hash = await bcrypt.hash("test1234", 10);
+  return NextResponse.json({ ok: true, step: "bcrypt worked", hashLen: hash.length });
 }
 
 export async function GET() {
