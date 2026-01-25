@@ -10,9 +10,13 @@ export async function connect() {
 
         })
 
+        console.log(`mongodb+srv://zohaibhassan22002:${encodeURIComponent(process.env.DATABASE_PASSWORD)}@cluster0.xzn1q5f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+
         console.log("EOOOOOOOOOOOOOOOOOOOO");
 
         const connection = mongoose.connection;
+
+        console.log("HEHEHEHEHEH");
 
         connection.on('connected', () => {
             // console.log('MongoDB connected successfully');
