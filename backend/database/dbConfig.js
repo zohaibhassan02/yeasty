@@ -1,37 +1,24 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+
+let isConnected = false;
 
 export async function connect() {
-    try {
-        console.log("HELLLLOOOOOOOOO");
-        mongoose.connect(`mongodb+srv://zohaibhassan22002:${encodeURIComponent(process.env.DATABASE_PASSWORD)}@cluster0.xzn1q5f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
-        {
-            useNewUrlParser: false,
-            // useUnifiedTopology: true,
+  if (isConnected || mongoose.connection.readyState >= 1) return;
 
-        })
+  const password = process.env.DATABASE_PASSWORD;
+  if (!password) throw new Error("DATABASE_PASSWORD is not set");
 
-        console.log(`mongodb+srv://zohaibhassan22002:${encodeURIComponent(process.env.DATABASE_PASSWORD)}@cluster0.xzn1q5f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+  const uri = `mongodb+srv://zohaibhassan22002:${encodeURIComponent(
+    password
+  )}@cluster0.xzn1q5f.mongodb.net/yeasty?retryWrites=true&w=majority&appName=Cluster0`;
 
-        console.log("EOOOOOOOOOOOOOOOOOOOO");
-
-        const connection = mongoose.connection;
-
-        console.log("HEHEHEHEHEH");
-
-        connection.on('connected', () => {
-            // console.log('MongoDB connected successfully');
-        })
-
-        connection.on('error', (err) => {
-            console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err);
-            process.exit();
-        })
-
-    } catch (error) {
-        console.log('Something goes wrong!');
-        console.log(error);
-        
-    }
-
-
+  try {
+    await mongoose.connect(uri); // ✅ IMPORTANT: await
+    isConnected = true;
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    // ❌ DON'T process.exit() on Vercel/serverless
+    throw err;
+  }
 }
