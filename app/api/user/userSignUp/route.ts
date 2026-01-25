@@ -2,11 +2,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from "@/backend/database/dbConfig";
+import UserAuthModal from "@/backend/Model/UserAuthModal";
 
 export async function POST(req: NextRequest) {
-  await connect();
-  return NextResponse.json({ ok: true, step: "connect() worked" });
+  // Just touch the model
+  const name = UserAuthModal?.modelName || "no-model";
+  return NextResponse.json({ ok: true, step: "model import worked", name });
 }
 
 export async function GET() {
